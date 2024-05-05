@@ -1,0 +1,1 @@
+ALTER TABLE "tours" ADD COLUMN "test_line" text NOT NULL;

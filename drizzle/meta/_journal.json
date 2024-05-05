@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1714828238142,
+      "tag": "0000_fat_shape",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1714829756910,
+      "tag": "0001_hard_bedlam",
+      "breakpoints": true
+    }
+  ]
+}

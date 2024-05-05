@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  postgres:
+    image: "postgres:latest"
+    restart: always
+    environment:
+      POSTGRES_DB: dev_db
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_pass
+    ports:
+      - "5432:5432" 
+    volumes:
+      - data:/var/lib/postgresql/data
+
+  fire_place:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - postgres
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: postgres://dev_user:dev_pass@postgres/dev_db
+
+volumes:
+  data:
