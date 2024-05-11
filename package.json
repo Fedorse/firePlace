@@ -15,8 +15,8 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"studio": "drizzle-kit studio --config drizzle.config.ts",
-		"generate": "drizzle-kit generate:pg --config drizzle.config.ts",
-		"migrate": "drizzle-kit push:pg --config drizzle.config.ts"
+		"generate": "drizzle-kit generate ",
+		"migrate": "drizzle-kit migrate "
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -28,7 +28,7 @@
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
 		"@typescript-eslint/parser": "^7.0.0",
 		"autoprefixer": "^10.4.19",
-		"drizzle-kit": "^0.20.17",
+		"drizzle-kit": "^0.21.1",
 		"eslint": "^8.56.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0-next.4",
@@ -45,6 +45,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@vercel/postgres": "^0.8.0",
 		"drizzle-orm": "^0.30.10",
 		"pg": "^8.11.5",
 		"postgres": "^3.4.4"
