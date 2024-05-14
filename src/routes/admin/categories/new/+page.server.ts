@@ -8,7 +8,7 @@ export const actions: Actions = {
     addCategory: async ({ request }) => {
         const formData = await request.formData()
 
-        const name = formData.get('name')
+        const name = formData.get('name') || ''
         const name_en = formData.get('name_en') || ''
 
         try {

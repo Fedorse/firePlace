@@ -1,12 +1,15 @@
 <script>
 import { enhance } from '$app/forms';
 import CategorySelect from '$lib/components/CategorySelect.svelte';
+import Tags from '$lib/components/Tags.svelte';
+
 export let data
 
 let selectedCategory;
+let selectedTags = [];
 
 let categories = data.categories
-console.log(categories)
+let tags = data.tags
 
 
     
@@ -100,6 +103,8 @@ console.log(categories)
                 >
               </div>
               <CategorySelect {categories} bind:selectedCategory/>
+              <Tags {tags} bind:selectedTags />
+
             </div>
             <div class="{selectedTab === 'tab2' ? 'block' : 'hidden'}">
               <div class="flex flex-col gap-5">

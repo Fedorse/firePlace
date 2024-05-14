@@ -2,6 +2,9 @@
     import {enhance} from '$app/forms'
     export let data
     let forms = {}
+    console.log(data.arhivedProducts)
+    
+
 </script>
 
 <h3 class="">Добавленные товары</h3>
@@ -23,7 +26,7 @@
                 {product.name}
             </td>
             <td>
-                {product.categories}
+
             </td>
 
             <td class="flex justify-center">

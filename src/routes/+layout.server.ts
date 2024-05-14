@@ -1,11 +1,12 @@
 import { db } from '$lib/data/db.server';
 
 export const load = async () => {
-    const [products, categories] = await Promise.all([
-        db.query.product.findMany(),
-        db.query.categories.findMany()
+    const [products, categories, tags] = await Promise.all([
+        db.query.products.findMany(),
+        db.query.categories.findMany(),
+        db.query.tags.findMany()
     ]) 
-    return {products, categories}
+    return {products, categories, tags}
 }
 
 

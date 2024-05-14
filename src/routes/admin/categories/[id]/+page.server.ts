@@ -1,7 +1,8 @@
-import type {Actions} from './$types'
+import type { Actions } from './$types'
 import { eq } from 'drizzle-orm'
 import { db } from '$lib/data/db.server'
 import { categories } from '$lib/data/schema'
+import { error, fail } from '@sveltejs/kit'
 
 
 export const load = async ({ params }) => {
@@ -23,10 +24,8 @@ export const actions: Actions = {
         const name_en = formData.get('name_en') || ''
 
 
-
-
         if (!category) {
-            throw new Error('Category not found')
+            return fail(404, {error: 'Category not found'})
         }
 
         try {
@@ -46,8 +45,9 @@ export const actions: Actions = {
             const id = Number(formData.get('id'))
             await db.delete(categories).where(eq(categories.id, id))
             return {success : true, message: 'Category was successfully delete'}
-        } catch(error) {
-            return { success: false, message: "Failed to delete the category." };
+        } catch (error) {
+            console.error(error);
+            return fail(500, { error: 'Failed to delete the category' });
         }
     }
 }

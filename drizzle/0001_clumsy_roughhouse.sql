@@ -1,1 +1,0 @@
-ALTER TABLE "product" ADD COLUMN "new_column" text;

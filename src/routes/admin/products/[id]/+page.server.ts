@@ -1,6 +1,6 @@
 import { db } from '$lib/data/db.server';
 import { eq } from 'drizzle-orm';
-import { product } from '$lib/data/schema';
+import { products } from '$lib/data/schema';
 import { saveImage } from '$lib/utils/files';
 import type { Actions } from './$types';
 
@@ -9,8 +9,8 @@ export const load = async ({params, parent}) => {
     const productEqId = parseInt(params.id)
 
     const [productId, parentData] = await Promise.all([
-            db.query.product.findFirst({
-                where: eq( product.id, productEqId)}),
+            db.query.products.findFirst({
+                where: eq( products.id, productEqId)}),
                 parent()
     ])
     return {productId, ...parentData}
@@ -22,8 +22,8 @@ export const actions: Actions = {
         const formData = await request.formData()
 
         const id = Number(formData.get('id'))
-        const productId = await db.query.product.findFirst({
-                        where: eq(product.id, id)})
+        const productId = await db.query.products.findFirst({
+                        where: eq(products.id, id)})
 
         if(!productId) {
             throw new Error('Product not found')
@@ -48,9 +48,9 @@ export const actions: Actions = {
             updateFields.imgUrl = productId.imgUrl;
         }
         try {
-            const updatedProduct = await db.update(product) 
+            const updatedProduct = await db.update(products) 
                 .set(updateFields)
-                .where(eq(product.id, id))
+                .where(eq(products.id, id))
                 .returning(); 
 
             return { success: true, productId: updatedProduct };
@@ -62,9 +62,9 @@ export const actions: Actions = {
         try {
             const formData = await request.formData()
             const id = Number(formData.get('id'))
-            await db.update(product)
+            await db.update(products)
                     .set({published : false})
-                    .where(eq(product.id, id))
+                    .where(eq(products.id, id))
             return { success: true, message: "Product was successfully unpublished."}
         } catch(error) {
             console.error('Error unpublishing product:', error);
@@ -75,9 +75,9 @@ export const actions: Actions = {
         try {
             const formData = await request.formData()
             const id = Number(formData.get('id'))
-            await db.update(product)
+            await db.update(products)
                     .set({published : true})
-                    .where(eq(product.id, id))
+                    .where(eq(products.id, id))
             return { success: true, message: "Product was successfully published."}
         } catch(error) {
             console.error('Error publishing product:', error);
@@ -88,7 +88,7 @@ export const actions: Actions = {
         try {
             const formData = await request.formData()
             const id = Number(formData.get('id'))
-            await db.delete(product).where(eq(product.id, id));
+            await db.delete(products).where(eq(products.id, id));
             return { success: true, message: "Product was successfully delete."}
         } catch(error) {
             console.error('Error publishing product:', error);
