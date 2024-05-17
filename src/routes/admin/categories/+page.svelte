@@ -1,6 +1,6 @@
 <script>
     import { BASE_URL } from '$lib/utils/environment'
-    import AdminLink from '$lib/components/AdminLink.svelte'
+    import AdminLink from '$lib/components/admin/AdminLink.svelte'
 </script>
 
 

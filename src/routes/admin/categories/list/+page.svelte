@@ -1,27 +1,27 @@
 <script>
-    export let data
+	export let data;
 </script>
 
-<h3 class="mb-10 text-xl text-center sm:text-left sm:text-3xl font-bold text-secondary">
-	Добавленные категории
-</h3>
+<h1 class="mb-10 pl-10 text-2xl font-semibold">Добавленные категории</h1>
 
-<table class="table">
-	<thead>
-		<tr>
-		<th class="text-md">Название</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		{#each data.categories as category (category.id)}
-			<tr
-				class=" select-none hover:bg-primary hover:text-primary-content text-lg sm:text-2xl cursor-pointer"
-			>
-				<td>
-					{category.name}
-				</td>
+<div class="px-10">
+	<table class="text-lg overflow-hidden rounded-lg min-w-96">
+		<thead class="text-xl">
+			<tr>
+				<th class="text-md font-semibold text-left pl-10 py-3">Название</th>
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+
+		<tbody>
+			{#each data.categories as category (category.id)}
+				<tr class="border-b last:border-none">
+					<td
+						class="text-slate-500 py-2 pl-10 rounded-lg hover:text-blue-700 hover:bg-slate-200 cursor-pointer text-lg"
+					>
+						<a class="block" href="/admin/categories/{category.id}">{category.name}</a>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>

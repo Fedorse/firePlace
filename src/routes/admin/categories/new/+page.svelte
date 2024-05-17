@@ -1,89 +1,87 @@
 <script>
+	import { enhance } from '$app/forms';
+	import Input from '$lib/components/admin/formInputs/Input.svelte';
+	import Button from '$lib/components/admin/formInputs/Button.svelte';
 
-import { enhance } from '$app/forms';
-
-let selectedTab = 'tab1'
-
+	let selectedTab = 'tab1';
+	let value = '';
+	let value_en = '';
 </script>
 
-<h3>Form add new category</h3>
+<h1 class="text-2xl font-semibold text-center mb-10">Форма добавления новой категории</h1>
 
-<div>
-    <form 
-        use:enhance={(
-            async ({ update }) => {
-                await update
-            }
-        )}
-        method='POST'
-        class = ''
-    >
+<div class="flex flex-col px-10">
+	<form
+		use:enhance={() =>
+			async ({ update }) => {
+				await update({ reset: false });
+				value = '';
+				value_en = '';
+			}}
+		method="POST"
+	>
+		<div class="bg-slate-50 rounded-lg shadow-sm">
+			<div class="w-full" role="tablist">
+				<label
+					for="tab1"
+					class={`cursor-pointer p-2 text-center bg-slate-200 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					>Основная информация</label
+				>
+				<input
+					type="radio"
+					id="tab1"
+					name="newProduct"
+					class="hidden"
+					role="tab"
+					checked
+					bind:group={selectedTab}
+					value="tab1"
+				/>
 
-    </form>
+				<label
+					for="tab2"
+					class={`cursor-pointer p-2 text-center bg-slate-200  rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					>Локализация</label
+				>
+				<input
+					type="radio"
+					id="tab2"
+					name="newProduct"
+					class="hidden"
+					role="tab"
+					bind:group={selectedTab}
+					value="tab2"
+				/>
+
+				<div class="tab-content bg-base-100 border-base-300 rounded-b-lg p-6">
+					<div class={selectedTab === 'tab1' ? 'block' : 'hidden'}>
+						<div class="flex flex-col gap-3">
+							<Input
+								name="name"
+								placeholder="Добавьте название категории"
+								label="Название"
+								required={true}
+								bind:value
+							/>
+						</div>
+					</div>
+					<div class={selectedTab === 'tab2' ? 'block' : 'hidden'}>
+						<div class="flex flex-col gap-3">
+							<Input
+								name="name_en"
+								placeholder="Add a category title"
+								label="Name"
+								required={false}
+								bind:value={value_en}
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="pb-5 pl-6">
+				<Button formaction="?/addCategory" text="Добавить категорию" />
+			</div>
+		</div>
+	</form>
 </div>
-<div class="flex flex-col w-full">
-    <form 
-        use:enhance={(
-            async ({ update }) => {
-                await update
-            }
-        )}
-        method="POST" 
-        class=""
-        >
-    <div class="p-0 sm:p-4 bg-gray-400">
-        <div class="w-full" role="tablist">
-            <label for="tab1" class="inline-block cursor-pointer p-4  text-center text-gray-700 bg-white rounded-t-lg border-b-2 border-transparent  " aria-label="Основная информация">main info</label>
-            <input 
-                type="radio" 
-                id="tab1" 
-                name="newProduct" 
-                class="hidden" 
-                role="tab"
-                checked
-                bind:group={selectedTab} 
-                value="tab1"  />
-          
-            <label for="tab2" class="inline-block cursor-pointer p-4 text-center text-gray-700 bg-white rounded-t-lg border-b-2  " aria-label="Дополнительная информация">local</label>
-            <input 
-                type="radio" 
-                id="tab2" 
-                name="newProduct" 
-                class="hidden" 
-                role="tab"
-                bind:group={selectedTab} value="tab2" />
-      
-          <div class="tab-content bg-base-100 border-base-300 rounded-b-lg p-6">
-            <div class="{selectedTab === 'tab1' ? 'block' : 'hidden'}">
-              <div class="flex flex-col gap-5">
-                <input 
-                type="text"
-                name="name"
-                label='Name'
-                placeholder="add name category"
-                >
-                </div>
-            </div>
-            <div class="{selectedTab === 'tab2' ? 'block' : 'hidden'}">
-              <div class="flex flex-col gap-5">
-                <input 
-                type="text"
-                name="name_en"
-                label='Name_en'
-                placeholder="add name en category"
-                >
-              </div>
-            </div>
-        </div>
-      </div>
-    
-    <button
-      formaction="?/addCategory"
-      class="bg-blue-300 text-white font-semibold p-2 rounded-lg "
-    >
-        Add Category
-    </button>
-    </form>
-</div>
-
- 
