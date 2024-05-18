@@ -2,7 +2,6 @@
 	import { enhance } from '$app/forms';
 
 	export let data;
-
 	let forms = {};
 </script>
 
@@ -18,7 +17,7 @@
 		</thead>
 
 		<tbody>
-			{#each data.arhivedProducts as product (product.id)}
+			{#each data.product as product (product.id)}
 				<tr class="border-b last:border-none">
 					<td
 						class="text-slate-500 py-2 pl-10 rounded-lg hover:text-blue-700 hover:bg-slate-200 cursor-pointer text-lg"
@@ -26,7 +25,7 @@
 						<a class="block" href="/admin/products/{product.id}">{product.name}</a>
 					</td>
 					<td class="py-2 px-2 text-lg text-slate-500 pl-10">
-						{product.category?.name}
+						{product.category?.name || 'Без категории'}
 					</td>
 
 					<td class="flex justify-center pt-2">

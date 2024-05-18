@@ -4,11 +4,11 @@ import { products } from '$lib/data/schema';
 import { eq } from 'drizzle-orm';
 
 export const load = async () => {
-	const arhivedProducts = await db.query.products.findMany({
+	const product = await db.query.products.findMany({
 		where: eq(products.published, false)
 	});
 
-	return { arhivedProducts };
+	return { product };
 };
 
 export const actions: Actions = {

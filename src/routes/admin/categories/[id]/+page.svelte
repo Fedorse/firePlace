@@ -1,100 +1,97 @@
 <script>
+	import { enhance } from '$app/forms';
+	import Input from '$lib/components/admin/formInputs/Input.svelte';
+	import Button from '$lib/components/admin/formInputs/Button.svelte';
 
-    import { enhance } from '$app/forms';
-    
-    let selectedTab = 'tab1'
-    
-    export let data
-    </script>
-    
-    <h3>Form edit category</h3>
-    
-    <div>
-        <form 
-            use:enhance={(
-                async ({ update }) => {
-                    await update
-                }
-            )}
-            method='POST'
-            class = ''
-        >
-    
-        </form>
-    </div>
-    <div class="flex flex-col w-full">
-        <form 
-            use:enhance={(
-                async ({ update }) => {
-                    await update
-                }
-            )}
-            method="POST" 
-            class=""
-            >
-            <input type="hidden" name="id" value="{data.category?.id}">
-        <div class="p-0 sm:p-4 bg-gray-400">
-            <div class="w-full" role="tablist">
-                <label for="tab1" class="inline-block cursor-pointer p-4  text-center text-gray-700 bg-white rounded-t-lg border-b-2 border-transparent  " aria-label="Основная информация">main info</label>
-                <input 
-                    type="radio" 
-                    id="tab1" 
-                    name="newProduct" 
-                    class="hidden" 
-                    role="tab"
-                    checked
-                    bind:group={selectedTab} 
-                    value="tab1"  />
-              
-                <label for="tab2" class="inline-block cursor-pointer p-4 text-center text-gray-700 bg-white rounded-t-lg border-b-2  " aria-label="Дополнительная информация">local</label>
-                <input 
-                    type="radio" 
-                    id="tab2" 
-                    name="newProduct" 
-                    class="hidden" 
-                    role="tab"
-                    bind:group={selectedTab} value="tab2" />
-          
-              <div class="tab-content bg-base-100 border-base-300 rounded-b-lg p-6">
-                <div class="{selectedTab === 'tab1' ? 'block' : 'hidden'}">
-                  <div class="flex flex-col gap-5">
-                    <input 
-                    value="{data.category?.name}"
-                    type="text"
-                    name="name"
-                    placeholder="add name category"
-                    >
-                    </div>
-                </div>
-                <div class="{selectedTab === 'tab2' ? 'block' : 'hidden'}">
-                  <div class="flex flex-col gap-5">
-                    <input 
-                    value="{data.category?.name_en}"
-                    type="text"
-                    name="name_en"
-                    placeholder="add name en category"
-                    >
-                  </div>
-                </div>
-            </div>
-          </div>
-        
-        <div>
-            <button
-            formaction="?/updateCategory"
-            class="bg-blue-300 text-white font-semibold p-2 rounded-lg "
-          >
-          update Category
-          </button>
-          <button
-          formaction="?/deleteCategory"
-          class="bg-blue-300 text-white font-semibold p-2 rounded-lg "
-        >
-            delete Category
-        </button>
-        </div>
+	export let data;
 
-        </form>
-    </div>
-    
-     
+	let selectedTab = 'tab1';
+</script>
+
+<h1 class="text-2xl font-semibold text-center mb-10">Форма редактирования категории</h1>
+
+<div class="flex flex-col px-10">
+	<form
+		use:enhance={() =>
+			async ({ update }) => {
+				await update({ reset: false });
+			}}
+		method="POST"
+	>
+		<input type="hidden" name="id" value={data.category?.id} />
+		<div class="bg-slate-50 rounded-lg shadow-sm">
+			<div class="w-full" role="tablist">
+				<label
+					for="tab1"
+					class={`cursor-pointer p-2 text-center bg-slate-200 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					>Основная информация</label
+				>
+				<input
+					type="radio"
+					id="tab1"
+					name="newTag"
+					class="hidden"
+					role="tab"
+					checked
+					bind:group={selectedTab}
+					value="tab1"
+				/>
+
+				<label
+					for="tab2"
+					class={`cursor-pointer p-2 text-center bg-slate-200   rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					>Локализация</label
+				>
+				<input
+					type="radio"
+					id="tab2"
+					name="newTag"
+					class="hidden"
+					role="tab"
+					bind:group={selectedTab}
+					value="tab2"
+				/>
+
+				<div class="tab-content rounded-b-lg p-6">
+					<div class={selectedTab === 'tab1' ? 'block' : 'hidden'}>
+						<div class="flex flex-col gap-3">
+							<Input
+								name="name"
+								placeholder="Добавьте название категории"
+								label="Название"
+								required={false}
+								bind:value={data.category.name}
+							/>
+						</div>
+					</div>
+
+					<div class={selectedTab === 'tab2' ? 'block' : 'hidden'}>
+						<div class="flex flex-col gap-3">
+							<Input
+								name="name"
+								placeholder="Добавьте название тега"
+								label="Название"
+								bind:value={data.category.name_en}
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="flex gap-4 pl-6 pb-6">
+				<Button
+					formaction="?/updateCategory"
+					text="Обновить тег"
+					variant="bg-blue-500"
+					variantHover="bg-blue-600"
+				/>
+				<Button
+					formaction="?/deleteCategory"
+					text="Удалить"
+					variant="bg-red-500"
+					variantHover="bg-red-600"
+				/>
+			</div>
+		</div>
+	</form>
+</div>

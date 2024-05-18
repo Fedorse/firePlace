@@ -1,4 +1,4 @@
-import { pgTable, serial, boolean, text, integer, varchar, primaryKey  } from 'drizzle-orm/pg-core';
+import { pgTable, serial, boolean, text, integer, varchar, primaryKey } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 
 export const products = pgTable('products', {
@@ -45,14 +45,15 @@ export const categoryRelations = relations(categories, ({ many }) => ({
 	products: many(products)
 }));
 
-export const productRelations = relations(products, ({ one }) => ({
+export const productRelations = relations(products, ({ one, many }) => ({
 	category: one(categories, {
 		fields: [products.category_id],
 		references: [categories.id]
-	})
+	}),
+	productTags: many(productTags)
 }));
 
-export const usersToGroupsRelations = relations(productTags, ({ one }) => ({
+export const productToGroupsRelations = relations(productTags, ({ one }) => ({
 	product: one(products, {
 		fields: [productTags.productId],
 		references: [products.id]

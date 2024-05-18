@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	export let data;
 	let forms = {};
+	console.log(data);
 </script>
 
 <h1 class="text-center text-2xl font-semibold mb-10">Архив неопубликованных товаров</h1>
@@ -14,7 +15,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each data.arhivedProducts as product (product.id)}
+			{#each data.product as product (product.id)}
 				<tr class="border-b last:border-none">
 					<td
 						class=" py-2 pl-10 text-slate-500 rounded-lg hover:text-blue-700 hover:bg-slate-200 cursor-pointer text-lg"

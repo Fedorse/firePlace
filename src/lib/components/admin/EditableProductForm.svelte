@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
 	import { enhance } from '$app/forms';
 	import CategorySelect from '$lib/components/admin/formInputs/CategorySelect.svelte';
 	import Tags from '$lib/components/admin/formInputs/Tags.svelte';
@@ -16,7 +16,8 @@
 	let selectedTab = 'tab1';
 
 	let selectedCategory = product.category.id;
-	let selectedTags = product.tags.map((tag) => tag.id);
+	let selectedTags = product.productTags.map((tag) => tag.tagId);
+	console.log(selectedTags);
 </script>
 
 <div class="flex flex-col w-full p-10 bg-gray-50 shadow-sm rounded-lg">
@@ -109,38 +110,35 @@
 				</div>
 			</div>
 		</div>
-		<div class="items-center justify-center flex">
-			<Button formaction="?/addProduct" text="Добавить продукт" />
+		<div class="items-center flex justify-center gap-4">
+			<Button
+				formaction="?/updateProduct"
+				text="Обновить продукт"
+				variant="bg-blue-500"
+				variantHover="bg-blue-600"
+			/>
+
+			{#if product.published}
+				<Button
+					formaction="?/unpublishProduct"
+					text="Поместить в архив"
+					variant="bg-yellow-500"
+					variantHover="bg-yellow-600"
+				/>
+			{:else}
+				<Button
+					formaction="?/publishProduct"
+					text="Опубликовать"
+					variant="bg-yellow-500"
+					variantHover="bg-yellow-600"
+				/>
+			{/if}
+			<Button
+				formaction="?/deleteProduct"
+				text="Удалить"
+				variant="bg-red-500"
+				variantHover="bg-red-600"
+			/>
 		</div>
 	</form>
-</div> -->
-<!-- 
-<div class="items-center flex justify-center">
-	<button
-		formaction="?/updateProduct"
-		class="bg-blue-300 w-44 text-white font-semibold p-2 rounded-lg"
-	>
-		update product
-	</button>
-	{#if data.productId.published}
-		<button
-			formaction="?/unpublishProduct"
-			class="bg-blue-300 w-44 text-white font-semibold p-2 rounded-lg"
-		>
-			unpublish Product
-		</button>
-	{:else}
-		<button
-			formaction="?/publishProduct"
-			class="bg-blue-300 w-44 text-white font-semibold p-2 rounded-lg"
-		>
-			publish Product
-		</button>
-	{/if}
-	<button
-		formaction="?/deleteProduct"
-		class="bg-blue-300 w-44 text-white font-semibold p-2 rounded-lg"
-	>
-		delete product
-	</button>
-</div> -->
+</div>

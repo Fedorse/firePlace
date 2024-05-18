@@ -8,7 +8,7 @@
 	let value_en = '';
 </script>
 
-<h1 class="text-2xl font-semibold text-center mb-10">Форма добавления нового тега</h1>
+<h1 class="text-2xl font-sans text-center mb-10">Форма добавления нового тега</h1>
 
 <div class="flex flex-col px-10">
 	<form
@@ -53,7 +53,7 @@
 					value="tab2"
 				/>
 
-				<div class="tab-content bg-base-100 border-base-300 rounded-b-lg p-6">
+				<div class="tab-content rounded-b-lg p-6">
 					<div class={selectedTab === 'tab1' ? 'block' : 'hidden'}>
 						<div class="flex flex-col gap-3">
 							<Input

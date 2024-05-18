@@ -4,14 +4,14 @@ import { products } from '$lib/data/schema';
 import { eq } from 'drizzle-orm';
 
 export const load = async ({ parent }) => {
-	const [arhivedProducts, parentData] = await Promise.all([
+	const [product, parentData] = await Promise.all([
 		db.query.products.findMany({
 			where: eq(products.published, true),
 			with: { category: true }
 		}),
 		parent()
 	]);
-	return { arhivedProducts, ...parentData };
+	return { product, ...parentData };
 };
 
 export const actions: Actions = {
