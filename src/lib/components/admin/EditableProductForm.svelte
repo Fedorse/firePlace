@@ -20,7 +20,7 @@
 	console.log(selectedTags);
 </script>
 
-<div class="flex flex-col w-full p-10 bg-gray-50 shadow-sm rounded-lg">
+<div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		method="POST"
 		use:enhance={() =>
@@ -39,7 +39,7 @@
 			<div class="w-full" role="tablist">
 				<label
 					for="tab1"
-					class={`cursor-pointer p-2 text-center bg-slate-200 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-300 text-black border-blue-600 p-3`' : 'bg-slate-100'}`}
+					class={`cursor-pointer p-3 text-center bg-slate-100 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-200 text-black border-slate-800 `' : 'bg-slate-100'}`}
 					>Основная информация</label
 				>
 				<input
@@ -55,7 +55,7 @@
 
 				<label
 					for="tab2"
-					class={`cursor-pointer p-2 text-center  rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					class={`cursor-pointer p-3 text-center  rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-200 text-black border-slate-800 ' : 'bg-slate-100'}`}
 					>Локализация</label
 				>
 				<input
@@ -81,15 +81,15 @@
 							<TextArea
 								bind:value={product.description}
 								name="description"
-								placeholder="Добавьте описание"
-								label="Добавьте описание товара"
+								placeholder="Добавьте описание товара"
+								label="Описание товара"
 							/>
 							<TextArea
 								required={true}
 								bind:value={product.short_description}
 								name="short_description"
-								placeholder="Добавьте краткое описание"
-								label="Добавьте краткое описание товара"
+								placeholder="Добавьте краткое описание товара"
+								label="Kраткое описание товара"
 							/>
 							<Integer
 								required={true}
@@ -111,33 +111,28 @@
 			</div>
 		</div>
 		<div class="items-center flex justify-center gap-4">
-			<Button
-				formaction="?/updateProduct"
-				text="Обновить продукт"
-				variant="bg-blue-500"
-				variantHover="bg-blue-600"
-			/>
+			<Button formaction="?/updateProduct" text="Обновить продукт" />
 
 			{#if product.published}
 				<Button
 					formaction="?/unpublishProduct"
 					text="Поместить в архив"
 					variant="bg-yellow-500"
-					variantHover="bg-yellow-600"
+					variantHover="bg-yellow-800"
 				/>
 			{:else}
 				<Button
 					formaction="?/publishProduct"
 					text="Опубликовать"
-					variant="bg-yellow-500"
-					variantHover="bg-yellow-600"
+					variant="bg-yellow-700"
+					variantHover="bg-yellow-800"
 				/>
 			{/if}
 			<Button
 				formaction="?/deleteProduct"
 				text="Удалить"
-				variant="bg-red-500"
-				variantHover="bg-red-600"
+				variant="bg-red-700"
+				variantHover="bg-red-800"
 			/>
 		</div>
 	</form>

@@ -8,7 +8,7 @@
 <div class="flex bg-slate-100 min-h-screen">
 	<Sidebar />
 
-	<main class="flex-1 ml-72 p-4 mt-16">
+	<main class="flex-1 ml-72 p-4 pb-10 mt-10">
 		<slot />
 	</main>
 </div>

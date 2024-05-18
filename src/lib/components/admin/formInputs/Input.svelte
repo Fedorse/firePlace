@@ -6,10 +6,10 @@
 	export let required = false;
 </script>
 
-<label class="label text-lg font-medium text-gray-900" for={name}>{label}</label>
+<label class="label text-base font-medium" for={name}>{label}</label>
 <input
 	type="text"
-	class="mt-1 block w-full rounded-md border border-gray-300 bg-slate-200 p-2"
+	class="mt-1 block w-full rounded-lg border border-slate-300 bg-slate-50 p-2"
 	bind:value
 	{name}
 	{placeholder}

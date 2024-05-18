@@ -11,7 +11,7 @@
 	}
 </script>
 
-<h3 class="text-lg">Теги</h3>
+<h3 class="text-base">Теги</h3>
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
 	{#each tags as tag (tag.id)}
 		<label class="flex items-center gap-2 cursor-pointer">
@@ -24,23 +24,10 @@
 				on:change={(e) => handleTagChange(tag.id, e.target.checked)}
 			/>
 			<div
-				class="w-5 h-5 border border-gray-300 rounded-full peer-checked:bg-blue-500 peer-checked:border-blue-500 flex items-center justify-center"
-			>
-				<svg
-					class="w-4 h-4 text-white hidden peer-checked:block"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"
-					></path>
-				</svg>
-			</div>
+				class="w-5 h-5 border border-slate-500 rounded-full peer-checked:bg-slate-500 peer-checked:border-slate-950 flex items-center justify-center"
+			></div>
 			<div class="flex items-center">
-				<span
-					class={`p-1 ${selectedTags.includes(tag.id) ? 'text-blue-500 font-bold' : 'text-gray-500'}`}
-				>
+				<span class={`p-1 ${selectedTags.includes(tag.id) ? 'text-black ' : 'text-slate-400'}`}>
 					{tag.name}
 				</span>
 				<!-- <span class="text-lg">{tag.name_en}</span> -->

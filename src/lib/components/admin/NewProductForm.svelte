@@ -22,7 +22,7 @@
 	let name_en = '';
 </script>
 
-<div class="flex flex-col w-full p-10 bg-gray-50 shadow-sm rounded-lg">
+<div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		method="POST"
 		use:enhance={() =>
@@ -46,7 +46,7 @@
 			<div class="w-full" role="tablist">
 				<label
 					for="tab1"
-					class={`cursor-pointer p-2 text-center bg-slate-200 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-300 text-black border-blue-600 p-3`' : 'bg-slate-100'}`}
+					class={`cursor-pointer p-3 text-center bg-slate-100 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-200 text-black border-slate-800 `' : 'bg-slate-100'}`}
 					>Основная информация</label
 				>
 				<input
@@ -62,7 +62,7 @@
 
 				<label
 					for="tab2"
-					class={`cursor-pointer p-2 text-center  rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					class={`cursor-pointer p-3 text-center  rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-200 text-black border-slate-800 ' : 'bg-slate-100'}`}
 					>Локализация</label
 				>
 				<input
@@ -88,15 +88,15 @@
 							<TextArea
 								bind:value={description}
 								name="description"
-								placeholder="Описание"
-								label="Добавьте описание товара"
+								placeholder="Добавьте описание товара"
+								label="Описание товара"
 							/>
 							<TextArea
 								required={true}
 								bind:value={short_description}
 								name="short_description"
-								placeholder="Краткое описание"
-								label="Добавьте краткое описание товара"
+								placeholder="Добавьте краткое описание товара"
+								label="Kраткое описание товара"
 							/>
 							<Integer
 								required={true}
@@ -118,7 +118,7 @@
 			</div>
 		</div>
 		<div class="items-center justify-center flex">
-			<Button formaction="?/addProduct" text="Добавить продукт" />
+			<Button formaction="?/addProduct" text="Добавить товар" />
 		</div>
 	</form>
 </div>

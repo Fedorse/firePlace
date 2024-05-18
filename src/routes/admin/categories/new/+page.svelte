@@ -8,9 +8,9 @@
 	let value_en = '';
 </script>
 
-<h1 class="text-2xl font-semibold text-center mb-10">Форма добавления новой категории</h1>
+<h1 class="text-2xl font-medium text-center mb-10">Форма добавления новой категории</h1>
 
-<div class="flex flex-col px-10">
+<div class="flex flex-col p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		use:enhance={() =>
 			async ({ update }) => {
@@ -20,11 +20,11 @@
 			}}
 		method="POST"
 	>
-		<div class="bg-slate-50 rounded-lg shadow-sm">
+		<div class="rounded-lg">
 			<div class="w-full" role="tablist">
 				<label
 					for="tab1"
-					class={`cursor-pointer p-2 text-center bg-slate-200 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					class={`cursor-pointer p-3 text-center bg-slate-100 rounded-t-lg border-b-2 ${selectedTab === 'tab1' ? 'bg-slate-200 text-black border-slate-800 `' : 'bg-slate-100'}`}
 					>Основная информация</label
 				>
 				<input
@@ -40,7 +40,7 @@
 
 				<label
 					for="tab2"
-					class={`cursor-pointer p-2 text-center bg-slate-200  rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-300 text-black border-blue-600 p-3' : 'bg-slate-100'}`}
+					class={`cursor-pointer p-3 text-center  rounded-t-lg border-b-2 ${selectedTab === 'tab2' ? 'bg-slate-200 text-black border-slate-800 ' : 'bg-slate-100'}`}
 					>Локализация</label
 				>
 				<input
@@ -53,7 +53,7 @@
 					value="tab2"
 				/>
 
-				<div class="tab-content bg-base-100 border-base-300 rounded-b-lg p-6">
+				<div class="tab-content rounded-b-lg p-6">
 					<div class={selectedTab === 'tab1' ? 'block' : 'hidden'}>
 						<div class="flex flex-col gap-3">
 							<Input

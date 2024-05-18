@@ -7,10 +7,10 @@
 	export let required = false;
 </script>
 
-<label class="label text-xl" for={name}>{label}</label>
+<label class="label text-base" for={name}>{label}</label>
 <input
 	type="number"
-	class="mt-1 block w-full rounded-md border border-gray-300 bg-slate-200 p-2"
+	class="mt-1 block w-full rounded-lg border border-gray-300 bg-slate-50 p-2"
 	bind:value
 	{step}
 	{name}

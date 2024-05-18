@@ -6,9 +6,9 @@
 	export let required = false;
 </script>
 
-<label class="text-lg font-medium text-gray-900" for={name}>{label}</label>
+<label class="text-base font-medium text-black" for={name}>{label}</label>
 <textarea
-	class="mt-1 block w-full rounded-md border border-gray-300 bg-slate-200 p-2 min-h-32"
+	class="mt-1 block w-full rounded-lg border border-slate-300 bg-slate-50 p-2 min-h-32"
 	bind:value
 	{name}
 	{placeholder}
