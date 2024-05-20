@@ -14,7 +14,7 @@
 	<table class="text-lg w-full rounded-lg overflow-hidden shadow-lg">
 		<thead class="text-xl bg-slate-200 border-slate-300 border">
 			<tr>
-				<th class="text-left py-3 font-semibold pl-2">Название</th>
+				<th class="text-left py-3 font-semibold pl-10">Название</th>
 				<th class="text-left py-3 font-semibold min-w-36">Категория</th>
 				<th class="py-3 font-semibold text-center min-w-36">Опубликован</th>
 			</tr>
@@ -26,7 +26,7 @@
 					<td
 						class="text-slate-500 py-4 rounded-lg cursor-pointer text-lg hover:text-black hover:bg-slate-200"
 					>
-						<div class="flex gap-4 pl-2 pr-2">
+						<div class="flex gap-4 pl-10 pr-10">
 							<a class="block w-full h-full max-w-lg truncate" href="/admin/products/{product.id}"
 								>{product.name}</a
 							>
