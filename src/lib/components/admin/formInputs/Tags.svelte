@@ -1,4 +1,5 @@
 <script>
+	import CheckBox from '$lib/components/icons/CheckBox.svelte';
 	export let tags;
 	export let selectedTags;
 
@@ -24,10 +25,14 @@
 				on:change={(e) => handleTagChange(tag.id, e.target.checked)}
 			/>
 			<div
-				class="w-5 h-5 border border-slate-500 rounded-full peer-checked:bg-slate-500 peer-checked:border-slate-950 flex items-center justify-center"
-			></div>
+				class="w-5 h-5 border border-slate-500 rounded-lg shadow-md peer-checked:bg-slate-600 peer-checked:border-teal-700 flex items-center justify-center"
+			>
+				<CheckBox />
+			</div>
 			<div class="flex items-center">
-				<span class={`p-1 ${selectedTags.includes(tag.id) ? 'text-black ' : 'text-slate-400'}`}>
+				<span
+					class={`p-1 ${selectedTags.includes(tag.id) ? 'text-black font-semibold' : 'text-slate-400'}`}
+				>
 					{tag.name}
 				</span>
 				<!-- <span class="text-lg">{tag.name_en}</span> -->
