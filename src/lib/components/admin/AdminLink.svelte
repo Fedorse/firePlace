@@ -3,4 +3,4 @@
 	export let text;
 </script>
 
-<a href={url} class="text-xl">{text}</a>
+<a href={url} class="text-xl text-slate-500 hover:text-black hover:underline">{text}</a>

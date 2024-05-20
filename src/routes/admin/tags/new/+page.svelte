@@ -8,23 +8,28 @@
 	let selectedTab = 'tab1';
 	let value = '';
 	let value_en = '';
+	let isLoading = false;
 </script>
 
 <AdminTitle text="Форма добавления нового тега" />
 
 <div class="flex flex-col p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
-		use:enhance={() =>
-			async ({ update, result }) => {
+		use:enhance={() => {
+			isLoading = true;
+			return async ({ update, result }) => {
 				await update({ reset: false });
 				value = '';
 				value_en = '';
+				isLoading = false;
+
 				if (result.type === 'success') {
 					toasts.add('Добавлен новый тег');
 				} else {
 					toasts.add(result.data.error, 'error');
 				}
-			}}
+			};
+		}}
 		method="POST"
 	>
 		<div class="rounded-lg">
@@ -86,7 +91,7 @@
 				</div>
 			</div>
 			<div class="pb-5 pl-6">
-				<Button formaction="?/addTag" text="Добавить тег" />
+				<Button formaction="?/addTag" text="Добавить тег" {isLoading} />
 			</div>
 		</div>
 	</form>

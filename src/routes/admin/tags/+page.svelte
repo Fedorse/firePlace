@@ -3,7 +3,7 @@
 	import AdminLink from '$lib/components/admin/AdminLink.svelte';
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col gap-2 pl-10">
 	<AdminLink url="/admin/tags/new" text="Добавление нового тега" />
 	<AdminLink url="/admin/tags/list" text="Список созданных тегов" />
 </div>

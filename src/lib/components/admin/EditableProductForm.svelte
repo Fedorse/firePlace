@@ -25,8 +25,9 @@
 <div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		method="POST"
-		use:enhance={() =>
-			async ({ action, update }) => {
+		use:enhance={() => {
+			isLoading = true;
+			return async ({ action, update }) => {
 				isLoading = true;
 				await update({ reset: false });
 				if (action.search === '?/updateProduct') {
@@ -40,7 +41,8 @@
 					toasts.add('Товар опубликован', 'warning');
 				}
 				isLoading = false;
-			}}
+			};
+		}}
 		class="flex flex-col gap-y-4"
 		enctype="multipart/form-data"
 	>
