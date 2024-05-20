@@ -30,7 +30,7 @@
 								class={$currentPath === '/admin/categories/new'
 									? 'bg-slate-200  rounded-lg cursor-pointer text-black p-2'
 									: 'cursor-pointer p-2'}
-								on:click={() => goto('/admin/categories/new')}
+								on:click={() => goto(`${BASE_URL}/admin/categories/new`)}
 							>
 								Добавление категории
 							</div>
