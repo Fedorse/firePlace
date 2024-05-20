@@ -1,6 +1,6 @@
 import { db } from "$lib/data/db.server";
 import { categories } from "$lib/data/schema";
-import type {Actions} from './$types'
+import type { Actions } from './$types'
 
 
 

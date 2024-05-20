@@ -1,9 +1,9 @@
 <script>
 	import EditableProductForm from '$lib/components/admin/EditableProductForm.svelte';
+	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
 	export let data;
 </script>
 
-<h1 class="text-center text-2xl font-medium mb-10">Форма редактирования продукта</h1>
-
+<AdminTitle text="Форма редактирования продукта" />
 
 <EditableProductForm product={data.product} tags={data.tags} categories={data.categories} />

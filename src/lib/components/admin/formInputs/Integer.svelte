@@ -10,7 +10,7 @@
 <label class="label text-base" for={name}>{label}</label>
 <input
 	type="number"
-	class="mt-1 block w-full rounded-lg border border-gray-300 bg-slate-50 p-2"
+	class="mt-1 block w-full rounded-lg border border-gray-300 bg-slate-50 p-2 focus:outline-none focus:border-slate-500 focus:ring focus:ring-slate-200 focus:ring-opacity-50"
 	bind:value
 	{step}
 	{name}

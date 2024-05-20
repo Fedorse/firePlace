@@ -4,6 +4,6 @@
 </script>
 
 <div class="flex flex-col">
-	<AdminLink url="{BASE_URL}/admin/tags/new" text="Добавление нового тега" />
-	<AdminLink url="{BASE_URL}/admin/tags/list" text="Список созданных тегов" />
+	<AdminLink url="/admin/tags/new" text="Добавление нового тега" />
+	<AdminLink url="/admin/tags/list" text="Список созданных тегов" />
 </div>

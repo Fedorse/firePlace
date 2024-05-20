@@ -1,8 +1,9 @@
 <script>
 	import NewProductForm from '$lib/components/admin/NewProductForm.svelte';
-
+	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
 	export let data;
 </script>
 
-<h1 class="text-center text-2xl font-medium mb-10">Форма добавления нового продукта</h1>
+<AdminTitle text="Форма добавления нового продукта" />
+
 <NewProductForm categories={data.categories} tags={data.tags} />

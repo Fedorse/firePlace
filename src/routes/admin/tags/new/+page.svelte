@@ -2,21 +2,28 @@
 	import { enhance } from '$app/forms';
 	import Input from '$lib/components/admin/formInputs/Input.svelte';
 	import Button from '$lib/components/admin/formInputs/Button.svelte';
+	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
+	import { toasts } from '$lib/stores/toasts';
 
 	let selectedTab = 'tab1';
 	let value = '';
 	let value_en = '';
 </script>
 
-<h1 class="text-2xl text-center font-medium mb-10">Форма добавления нового тега</h1>
+<AdminTitle text="Форма добавления нового тега" />
 
 <div class="flex flex-col p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		use:enhance={() =>
-			async ({ update }) => {
+			async ({ update, result }) => {
 				await update({ reset: false });
 				value = '';
 				value_en = '';
+				if (result.type === 'success') {
+					toasts.add('Добавлен новый тег');
+				} else {
+					toasts.add(result.data.error, 'error');
+				}
 			}}
 		method="POST"
 	>

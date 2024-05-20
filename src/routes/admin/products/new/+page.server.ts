@@ -2,6 +2,7 @@ import { db } from '$lib/data/db.server';
 import { products, productTags } from '$lib/data/schema';
 import { DEFAULT_PRODUCT_IMAGE } from '$lib/utils/constsImg';
 import { saveImage } from '$lib/utils/files';
+import { saveVideo } from '$lib/utils/files';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
@@ -19,9 +20,14 @@ export const actions: Actions = {
 		const sortOrder = Number(formData.get('sort_order'));
 
 		let imgUrl = DEFAULT_PRODUCT_IMAGE;
+		let videoUrl = '';
 
-		if (imgFile && imgFile.size > 0) imgUrl = await saveImage(imgFile);
-
+		if (imgFile && imgFile.size > 0) {
+			imgUrl = await saveImage(imgFile);
+		}
+		if (videoFile && videoFile.size > 0) {
+			videoUrl = await saveVideo(videoFile);
+		}
 		try {
 			const [newProduct] = await db
 				.insert(products)

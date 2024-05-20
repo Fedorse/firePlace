@@ -2,19 +2,34 @@
 	import { enhance } from '$app/forms';
 	import Input from '$lib/components/admin/formInputs/Input.svelte';
 	import Button from '$lib/components/admin/formInputs/Button.svelte';
+	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
+	import { toasts } from '$lib/stores/toasts';
+	import { goto } from '$app/navigation';
 
 	export let data;
 
 	let selectedTab = 'tab1';
 </script>
 
-<h1 class="text-2xl font-medium text-center mb-10">Форма редактирования категории</h1>
+<AdminTitle text="Форма редактирования категории" />
 
 <div class="flex flex-col p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
-		use:enhance={() =>
-			async ({ update }) => {
+		use:enhance={({ action }) =>
+			async ({ update, result }) => {
 				await update({ reset: false });
+
+				if (result.type !== 'success') {
+					toasts.add(result.data.error, 'error');
+					return;
+				}
+
+				if (action.search === '?/updateCategory') {
+					toasts.add('Категория обновлена');
+				} else if (action.search === '?/deleteCategory') {
+					toasts.add('Категория удалена', 'error');
+					goto(`/admin/categories`);
+				}
 			}}
 		method="POST"
 	>
@@ -79,7 +94,7 @@
 			</div>
 
 			<div class="flex gap-4 pl-6 pb-6">
-				<Button formaction="?/updateCategory" text="Обновить тег" />
+				<Button formaction="?/updateCategory" text="Обновить категорию" />
 				<Button
 					formaction="?/deleteCategory"
 					text="Удалить"

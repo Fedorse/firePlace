@@ -1,14 +1,16 @@
 <script>
 	import { enhance } from '$app/forms';
+	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
+	import AdminEditIcon from '$lib/components/icons/AdminEditIcon.svelte';
+	import { toasts } from '$lib/stores/toasts';
 
 	export let data;
 	let forms = {};
 </script>
 
-<h1 class="text-center text-2xl font-medium mb-10">Добавленные товары</h1>
-
-<div class="">
-	<table class="text-lg min-w-full rounded-lg overflow-hidden shadow-sm">
+<AdminTitle text="Добавленные товары" />
+<div class="text-lg min-w-full rounded-lg overflow-hidden px-24">
+	<table class="text-lg w-full rounded-lg overflow-hidden shadow-lg">
 		<thead class="text-xl bg-slate-200 border-slate-300 border">
 			<tr>
 				<th class="text-left py-3 font-semibold pl-10">Название</th>
@@ -23,8 +25,11 @@
 					<td
 						class="text-slate-500 py-4 pl-10 rounded-lg cursor-pointer text-lg hover:text-black hover:bg-slate-200"
 					>
-						<a class="block" href="/admin/products/{product.id}">{product.name}</a>
-					</td>
+						<div class="flex gap-4 pr-10">
+							<a class="block w-full h-full" href="/admin/products/{product.id}">{product.name}</a>
+							<AdminEditIcon />
+						</div></td
+					>
 					<td class=" text-lg text-slate-500 pl-10">
 						{product.category?.name || 'Без категории'}
 					</td>
@@ -34,6 +39,7 @@
 							use:enhance={() =>
 								async ({ update }) => {
 									await update({ reset: false });
+									toasts.add('Товар перемещен в архив', 'warning');
 								}}
 							action="?/unpublishProduct"
 							method="POST"

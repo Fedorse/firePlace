@@ -8,9 +8,12 @@
 	import TextArea from '$lib/components/admin/formInputs/TextArea.svelte';
 	import Integer from '$lib/components/admin/formInputs/Integer.svelte';
 	import Button from '$lib/components/admin/formInputs/Button.svelte';
+	import { toasts } from '$lib/stores/toasts';
 
 	export let categories;
 	export let tags;
+
+	let isLoading = false;
 
 	let selectedCategory;
 	let selectedTags = [];
@@ -20,13 +23,16 @@
 	let short_description = '';
 	let price = '';
 	let name_en = '';
+	let imgSrc;
+	let videoSrc;
 </script>
 
 <div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		method="POST"
 		use:enhance={() =>
-			async ({ update }) => {
+			async ({ update, result }) => {
+				isLoading = true;
 				await update({ reset: false });
 				name = '';
 				description = '';
@@ -34,13 +40,22 @@
 				price = '';
 				selectedCategory = undefined;
 				selectedTags = [];
+				imgSrc = '';
+				videoSrc = '';
+				isLoading = false;
+
+				if (result.type === 'success') {
+					toasts.add('Добавлен новый товар');
+				} else {
+					toasts.add(result.type.error, 'error');
+				}
 			}}
 		class="flex flex-col gap-y-4"
 		enctype="multipart/form-data"
 	>
-		<div class="w-full flex">
-			<Image />
-			<Video />
+		<div class="w-full flex gap-4">
+			<Image src={imgSrc} uniqueId="image-newProduct" />
+			<Video src={videoSrc} uniqueId="video-newProduct" />
 		</div>
 		<div class="py-4">
 			<div class="w-full" role="tablist">
@@ -118,7 +133,7 @@
 			</div>
 		</div>
 		<div class="items-center justify-center flex">
-			<Button formaction="?/addProduct" text="Добавить товар" />
+			<Button formaction="?/addProduct" text="Добавить товар" {isLoading} />
 		</div>
 	</form>
 </div>

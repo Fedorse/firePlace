@@ -1,13 +1,16 @@
 <script>
 	import { enhance } from '$app/forms';
+	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
+	import AdminEditIcon from '$lib/components/icons/AdminEditIcon.svelte';
+	import { toasts } from '$lib/stores/toasts';
 	export let data;
 	let forms = {};
 </script>
 
-<h1 class="text-center text-2xl font-medium mb-10">Архив неопубликованных товаров</h1>
+<AdminTitle text="Архив неопубликованных товаров" />
 
-<div class="">
-	<table class="text-lg min-w-full rounded-lg overflow-hidden shadow-sm">
+<div class="text-lg min-w-full rounded-lg overflow-hidden px-24">
+	<table class="text-lg w-full rounded-lg overflow-hidden shadow-lg">
 		<thead class="text-xl bg-slate-200 border-slate-300 border">
 			<tr>
 				<th class="py-3 font-semibold text-left pl-10">Название</th>
@@ -20,14 +23,18 @@
 					<td
 						class="text-slate-500 py-4 pl-10 rounded-lg cursor-pointer text-lg hover:text-black hover:bg-slate-200"
 					>
-						<a class="block" href="/admin/products/{product.id}">{product.name}</a>
-					</td>
+						<div class="flex gap-4 pr-10">
+							<a class="block w-full h-full" href="/admin/products/{product.id}">{product.name}</a>
+							<AdminEditIcon />
+						</div></td
+					>
 
 					<td class="flex justify-center pt-4">
 						<form
 							use:enhance={() =>
-								async ({ update, action }) => {
+								async ({ update }) => {
 									await update({ reset: false });
+									toasts.add('Товар опубликован', 'warning');
 								}}
 							action="?/publishProduct"
 							method="POST"

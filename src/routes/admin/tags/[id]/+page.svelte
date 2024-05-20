@@ -2,19 +2,35 @@
 	import { enhance } from '$app/forms';
 	import Input from '$lib/components/admin/formInputs/Input.svelte';
 	import Button from '$lib/components/admin/formInputs/Button.svelte';
+	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
+	import { BASE_URL } from '$lib/utils/environment';
+	import { goto } from '$app/navigation';
+	import { toasts } from '$lib/stores/toasts';
 
 	export let data;
 
 	let selectedTab = 'tab1';
 </script>
 
-<h1 class="text-2xl font-semibold text-center mb-10">Форма редактирования тега</h1>
+<AdminTitle text="Форма редактирования тега" />
 
 <div class="flex flex-col p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
-		use:enhance={() =>
-			async ({ update }) => {
+		use:enhance={({ action }) =>
+			async ({ update, result }) => {
 				await update({ reset: false });
+
+				if (result.type !== 'success') {
+					toasts.add(result.data.error, 'error');
+					return;
+				}
+
+				if (action.search === '?/updateTag') {
+					toasts.add('Тег обновлен');
+				} else if (action.search === '?/deleteTag') {
+					toasts.add('Тег удален', 'error');
+					goto(`/admin/tags`);
+				}
 			}}
 		method="POST"
 	>

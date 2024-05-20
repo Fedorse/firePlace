@@ -8,32 +8,46 @@
 	import TextArea from '$lib/components/admin/formInputs/TextArea.svelte';
 	import Integer from '$lib/components/admin/formInputs/Integer.svelte';
 	import Button from '$lib/components/admin/formInputs/Button.svelte';
+	import { goto } from '$app/navigation';
+	import { toasts } from '$lib/stores/toasts';
 
 	export let categories;
 	export let tags;
 	export let product;
 
+	let isLoading = false;
 	let selectedTab = 'tab1';
 
 	let selectedCategory = product.category.id;
 	let selectedTags = product.productTags.map((tag) => tag.tagId);
-	console.log(selectedTags);
 </script>
 
 <div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		method="POST"
 		use:enhance={() =>
-			async ({ update }) => {
+			async ({ action, update }) => {
+				isLoading = true;
 				await update({ reset: false });
+				if (action.search === '?/updateProduct') {
+					toasts.add('Товар обновлен');
+				} else if (action.search === '?/deleteProduct') {
+					goto(`/admin/products`);
+					toasts.add('Товар удален', 'error');
+				} else if (action.search === '?/unpublishProduct') {
+					toasts.add('Товар перемещен в архив', 'warning');
+				} else if (action.search === '?/publishProduct') {
+					toasts.add('Товар опубликован', 'warning');
+				}
+				isLoading = false;
 			}}
 		class="flex flex-col gap-y-4"
 		enctype="multipart/form-data"
 	>
 		<input type="hidden" name="id" value={product.id} />
 		<div class="w-full flex">
-			<Image />
-			<Video />
+			<Image src={product.imgUrl} uniqueId="image" />
+			<Video src={product.videoFile} uniqueId="video" />
 		</div>
 		<div class="py-4">
 			<div class="w-full" role="tablist">
@@ -111,7 +125,7 @@
 			</div>
 		</div>
 		<div class="items-center flex justify-center gap-4">
-			<Button formaction="?/updateProduct" text="Обновить продукт" />
+			<Button formaction="?/updateProduct" text="Обновить продукт" {isLoading} />
 
 			{#if product.published}
 				<Button
