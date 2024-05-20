@@ -30,9 +30,9 @@
 <div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
 	<form
 		method="POST"
-		use:enhance={() =>
-			async ({ update, result }) => {
-				isLoading = true;
+		use:enhance={() => {
+			isLoading = true;
+			return async ({ update, result }) => {
 				await update({ reset: false });
 				name = '';
 				description = '';
@@ -49,7 +49,8 @@
 				} else {
 					toasts.add(result.type.error, 'error');
 				}
-			}}
+			};
+		}}
 		class="flex flex-col gap-y-4"
 		enctype="multipart/form-data"
 	>
