@@ -24,7 +24,7 @@
 					<td
 						class="text-slate-500 py-4 pl-10 rounded-lg cursor-pointer text-lg hover:text-black hover:bg-slate-200"
 					>
-						<div class="flex gap-4">
+						<div class="flex gap-4 pr-2">
 							<a class="block w-full max-w-lg h-full truncate" href="/admin/products/{product.id}"
 								>{product.name}</a
 							>
