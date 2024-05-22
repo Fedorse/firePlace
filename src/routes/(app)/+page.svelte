@@ -1,53 +1,49 @@
 <script>
-	import ProductCard from '$lib/components/ProductCard.svelte';
-	import { filters } from '$lib/stores/filters';
-	import { filterProducts } from '$lib/utils/filters';
+	import { BASE_URL } from '$lib/utils/environment';
 	export let data;
 
-	let filtredProducts = data.products;
-
-	$: filtredProducts = filterProducts(data.products, $filters.categories);
+	const customerImg = [
+		'custmer-1.jpeg',
+		'custmer-2.jpeg',
+		'custmer-3.jpeg',
+		'custmer-4.jpeg',
+		'custmer-5.jpeg',
+		'custmer-6.jpeg',
+		'custmer-7.jpeg',
+		'custmer-8.jpeg',
+		'custmer-9.jpeg'
+	];
 </script>
 
-<div class="px-20">
-	<div class="flex justify-between my-14">
-		<div class="">
-			<h1 class="text-4xl font-bold uppercase mb-2">Catalog</h1>
-			<p class="text-zinc-500 text-lg">Catalog gas firetables test test description</p>
-		</div>
-		<div class="self-center">
-			<button class="outline border-orange-600 w-48 text-orange-600 border-1 rounded-3xl p-3"
-				>Download catalog</button
-			>
-		</div>
+<div class="relative h-screen">
+	<img
+		src="/assets/main_page.jpg"
+		class="absolute inset-0 w-full h-full object-cover"
+		alt="main_page_jpg"
+	/>
+	<div class="absolute inset-0 opacity-10 bg-black"></div>
+	<div class="absolute top-96 left-24 flex flex-col text-orange-50 items-start justify-center">
+		<h1 class="text-8xl uppercase font-bold max-w-4xl mb-4">Exclusive fire products</h1>
+		<p class="text-4xl uppercase max-w-64">your design, our qauity</p>
+		<a
+			href="{BASE_URL}/catalog"
+			class="self-end border-white w-48 text-white bg-orange-600 border-1 rounded-full p-4 hover:bg-orange-800 transition-colors duration-300 ease-in-out text-center inline-block"
+		>
+			Catalog
+		</a>
 	</div>
-	<div class="justify-evenly flex p-4 text-xl">
-		<div class="cursor-pointer" on:click={filters.reset}>All</div>
-		{#each data.categories as category}
-			<div
-				class="cursor-pointer"
-				on:click={() => filters.toggleCategory(category.id)}
-				class:active={$filters.categories.includes(category.id)}
-			>
-				{category.name}
-			</div>
-		{/each}
-	</div>
+</div>
 
-	<div class="grid grid-cols-3 gap-y-4 gap-x-8 2xl:grid-cols-4">
-		{#each filtredProducts as product (product.id)}
-			<div class="">
-				<ProductCard {product} />
+<div class="mt-20">
+	<div class="px-20">
+		<h1 class="font-bold uppercase text-5xl text-black mb-2">Our Customers</h1>
+		<p class="text-zinc-500 text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+	</div>
+	<div class="grid grid-cols-3 gap-4 place-items-center pt-12">
+		{#each customerImg as img}
+			<div class="w-40 h-36">
+				<img src={`/customer-card/${img}`} alt="customer-card" class="object-cover" />
 			</div>
 		{/each}
 	</div>
 </div>
-
-<style>
-	.active {
-		background-color: #ffdd57;
-		color: white;
-		border-radius: 4px;
-		padding: 4px 8px;
-	}
-</style>

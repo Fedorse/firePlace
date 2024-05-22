@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 const INITIAL_DATA = {
-	categories: []
+	categories: ['all']
 };
 
 const createFiltersStore = () => {
@@ -10,11 +10,17 @@ const createFiltersStore = () => {
 	const toggleCategory = (categoryId) => {
 		update((current) => {
 			const categories = current.categories;
-
+			if (categoryId === 'all') {
+				return { ...current, categories: ['all'] };
+			}
 			if (categories.includes(categoryId)) {
-				return { ...current, categories: categories.filter((id) => id !== categoryId) };
+				const updatedCategories = categories.filter((id) => id !== categoryId);
+				return { ...current, categories: updatedCategories.length ? updatedCategories : ['all'] };
 			} else {
-				return { ...current, categories: [...categories, categoryId] };
+				const updatedCategories = categories.includes('all')
+					? [categoryId]
+					: [...categories, categoryId];
+				return { ...current, categories: updatedCategories };
 			}
 		});
 	};
