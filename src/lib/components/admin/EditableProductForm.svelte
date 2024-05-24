@@ -107,6 +107,12 @@
 								placeholder="Добавьте краткое описание товара"
 								label="Kраткое описание товара"
 							/>
+							<Input
+								bind:value={product.sizes}
+								name="sizes"
+								label="Габариты"
+								placeholder="Добавьте габариты товара"
+							/>
 							<Integer
 								required={true}
 								bind:value={product.price}

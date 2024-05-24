@@ -37,7 +37,7 @@ export const actions: Actions = {
 
 		const updateFields = {};
 
-		const fields = ['name', 'short_description', 'description', 'price', 'sortOrder'];
+		const fields = ['name', 'short_description', 'description', 'price', 'sortOrder', 'sizes'];
 
 		fields.forEach((field) => {
 			const formValue = formData.get(field);

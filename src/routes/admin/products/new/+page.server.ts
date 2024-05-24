@@ -18,6 +18,7 @@ export const actions: Actions = {
 		const videoFile = formData.get('video');
 		const price = Number(formData.get('price'));
 		const sortOrder = Number(formData.get('sort_order'));
+		const sizes = formData.get('sizes');
 
 		let imgUrl = DEFAULT_PRODUCT_IMAGE;
 		let videoUrl = '';
@@ -39,7 +40,8 @@ export const actions: Actions = {
 					imgUrl,
 					videoFile,
 					price,
-					sortOrder
+					sortOrder,
+					sizes
 				})
 				.returning();
 

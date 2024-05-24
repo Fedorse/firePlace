@@ -25,6 +25,7 @@
 	let name_en = '';
 	let imgSrc;
 	let videoSrc;
+	let sizes = '';
 </script>
 
 <div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
@@ -42,6 +43,7 @@
 				selectedTags = [];
 				imgSrc = '';
 				videoSrc = '';
+				sizes = '';
 				isLoading = false;
 
 				if (result.type === 'success') {
@@ -113,6 +115,12 @@
 								name="short_description"
 								placeholder="Добавьте краткое описание товара"
 								label="Kраткое описание товара"
+							/>
+							<Input
+								bind:value={sizes}
+								name="sizes"
+								label="Габариты"
+								placeholder="Добавьте габариты товара"
 							/>
 							<Integer
 								required={true}

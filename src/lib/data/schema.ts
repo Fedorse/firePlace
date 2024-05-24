@@ -11,7 +11,8 @@ export const products = pgTable('products', {
 	videoFile: varchar('videoFile').default(''),
 	price: integer('price').notNull(),
 	sort_order: integer('sort_order').default(0).notNull(),
-	category_id: integer('categories_id').references(() => categories.id, { onDelete: 'cascade' })
+	category_id: integer('categories_id').references(() => categories.id, { onDelete: 'cascade' }),
+	sizes: text('sizes').default('')
 });
 
 export const categories = pgTable('categories', {

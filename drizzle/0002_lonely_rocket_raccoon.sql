@@ -1,0 +1,1 @@
+ALTER TABLE "products" ADD COLUMN "sizes" text DEFAULT '';
