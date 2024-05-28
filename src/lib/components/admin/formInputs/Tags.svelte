@@ -35,7 +35,6 @@
 				>
 					{tag.name}
 				</span>
-				<!-- <span class="text-lg">{tag.name_en}</span> -->
 			</div>
 		</label>
 	{/each}

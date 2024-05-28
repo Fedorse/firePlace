@@ -1,5 +1,5 @@
 import { db } from '$lib/data/db.server';
-import { products, productTags } from '$lib/data/schema';
+import { products, productTags, productColors } from '$lib/data/schema';
 import { DEFAULT_PRODUCT_IMAGE } from '$lib/utils/constsImg';
 import { saveImage } from '$lib/utils/files';
 import { saveVideo } from '$lib/utils/files';
@@ -11,6 +11,7 @@ export const actions: Actions = {
 
 		const category_id = Number(formData.get('categories_id'));
 		const product_tags = formData.getAll('product_tags').map(Number);
+		const product_colors = formData.getAll('product_colors').map(Number);
 		const name = formData.get('name');
 		const short_description = formData.get('short_description');
 		const description = formData.get('description');
@@ -49,6 +50,12 @@ export const actions: Actions = {
 				product_tags.map((tagId) => ({
 					productId: newProduct.id,
 					tagId
+				}))
+			);
+			await db.insert(productColors).values(
+				product_colors.map((colorId) => ({
+					productId: newProduct.id,
+					colorId
 				}))
 			);
 		} catch (error) {

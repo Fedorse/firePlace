@@ -5,6 +5,7 @@
 	import { fade } from 'svelte/transition';
 	import Filters from '$lib/components/Filters.svelte';
 	export let data;
+	console.log(data);
 
 	let filtredProducts = data.products;
 

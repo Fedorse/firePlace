@@ -8,18 +8,21 @@
 	import TextArea from '$lib/components/admin/formInputs/TextArea.svelte';
 	import Integer from '$lib/components/admin/formInputs/Integer.svelte';
 	import Button from '$lib/components/admin/formInputs/Button.svelte';
+	import Colors from './formInputs/Colors.svelte';
 	import { goto } from '$app/navigation';
 	import { toasts } from '$lib/stores/toasts';
 
 	export let categories;
 	export let tags;
 	export let product;
+	export let colors;
 
 	let isLoading = false;
 	let selectedTab = 'tab1';
 
 	let selectedCategory = product.category.id;
 	let selectedTags = product.productTags.map((tag) => tag.tagId);
+	let selectedColors = product.productColors.map((color) => color.colorId);
 </script>
 
 <div class="flex flex-col w-full p-10 bg-slate-100 border-slate-200 border-2 shadow-sm rounded-xl">
@@ -122,6 +125,7 @@
 							/>
 							<CategorySelect {categories} bind:selectedCategory />
 							<Tags {tags} bind:selectedTags />
+							<Colors {colors} bind:selectedColors />
 						</div>
 					</div>
 					<div class={selectedTab === 'tab2' ? 'block' : 'hidden'}>

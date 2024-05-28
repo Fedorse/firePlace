@@ -6,4 +6,4 @@
 
 <AdminTitle text="Форма добавления нового продукта" />
 
-<NewProductForm categories={data.categories} tags={data.tags} />
+<NewProductForm colors={data.colors} categories={data.categories} tags={data.tags} />

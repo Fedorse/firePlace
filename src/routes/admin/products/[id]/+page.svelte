@@ -6,4 +6,9 @@
 
 <AdminTitle text="Форма редактирования продукта" />
 
-<EditableProductForm product={data.product} tags={data.tags} categories={data.categories} />
+<EditableProductForm
+	colors={data.colors}
+	product={data.product}
+	tags={data.tags}
+	categories={data.categories}
+/>

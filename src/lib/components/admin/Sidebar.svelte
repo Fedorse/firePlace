@@ -73,6 +73,31 @@
 					</ul>
 				</details>
 				<details open class="mb-2">
+					<summary class="cursor-pointer font-medium text-lg list-none">Опции</summary>
+					<ul class=" mt-2 text-slate-500">
+						<li class="hover:underline">
+							<div
+								class={$currentPath === '/admin/colors/new'
+									? 'bg-slate-200 rounded-lg cursor-pointer text-black p-2'
+									: 'cursor-pointer p-2'}
+								on:click={() => goto('/admin/colors/new')}
+							>
+								Добавление цветов
+							</div>
+						</li>
+						<li class="hover:underline">
+							<div
+								class={$currentPath === '/admin/colors/list'
+									? 'bg-slate-200  rounded-lg cursor-pointer text-black p-2'
+									: 'cursor-pointer p-2'}
+								on:click={() => goto('/admin/colors/list')}
+							>
+								Список цветов
+							</div>
+						</li>
+					</ul>
+				</details>
+				<details open class="mb-2">
 					<summary class="cursor-pointer font-medium text-lg list-none">Товары</summary>
 					<ul class=" mt-2 text-slate-500">
 						<li class="hover:underline">

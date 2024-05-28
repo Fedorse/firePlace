@@ -1,6 +1,6 @@
 import { db } from '$lib/data/db.server';
 import { eq } from 'drizzle-orm';
-import { products, productTags } from '$lib/data/schema';
+import { products, productTags, productColors } from '$lib/data/schema';
 import { saveImage } from '$lib/utils/files';
 import type { Actions } from './$types';
 
@@ -13,6 +13,11 @@ export const load = async ({ params, parent }) => {
 				productTags: {
 					with: {
 						tag: true
+					}
+				},
+				productColors: {
+					with: {
+						color: true
 					}
 				}
 			}
@@ -59,6 +64,26 @@ export const actions: Actions = {
 				.set(updateFields)
 				.where(eq(products.id, id))
 				.returning();
+
+			await db.delete(productTags).where(eq(productTags.productId, id));
+
+			const product_tags = formData.getAll('product_tags').map(Number);
+			await db.insert(productTags).values(
+				product_tags.map((tagId) => ({
+					productId: id,
+					tagId
+				}))
+			);
+
+			await db.delete(productColors).where(eq(productColors.productId, id));
+
+			const product_colors = formData.getAll('product_colors').map(Number);
+			await db.insert(productColors).values(
+				product_colors.map((colorId) => ({
+					productId: id,
+					colorId
+				}))
+			);
 
 			return { success: true, productId: updatedProduct };
 		} catch (error) {

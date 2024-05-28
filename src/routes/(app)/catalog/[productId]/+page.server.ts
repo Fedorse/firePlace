@@ -12,6 +12,11 @@ export const load = async ({ params, parent }) => {
 					with: {
 						tag: true
 					}
+				},
+				productColors: {
+					with: {
+						color: true
+					}
 				}
 			}
 		}),
@@ -24,6 +29,11 @@ export const load = async ({ params, parent }) => {
 					with: {
 						tag: true
 					}
+				},
+				productColors: {
+					with: {
+						color: true
+					}
 				}
 			},
 			orderBy: desc(products.id)
@@ -35,6 +45,11 @@ export const load = async ({ params, parent }) => {
 				productTags: {
 					with: {
 						tag: true
+					}
+				},
+				productColors: {
+					with: {
+						color: true
 					}
 				}
 			},

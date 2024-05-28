@@ -8,15 +8,18 @@
 	import TextArea from '$lib/components/admin/formInputs/TextArea.svelte';
 	import Integer from '$lib/components/admin/formInputs/Integer.svelte';
 	import Button from '$lib/components/admin/formInputs/Button.svelte';
+	import Colors from './formInputs/Colors.svelte';
 	import { toasts } from '$lib/stores/toasts';
 
 	export let categories;
 	export let tags;
+	export let colors;
 
 	let isLoading = false;
 
 	let selectedCategory;
 	let selectedTags = [];
+	let selectedColors = [];
 	let selectedTab = 'tab1';
 	let name = '';
 	let description = '';
@@ -41,6 +44,7 @@
 				price = '';
 				selectedCategory = undefined;
 				selectedTags = [];
+				selectedColors = [];
 				imgSrc = '';
 				videoSrc = '';
 				sizes = '';
@@ -129,8 +133,10 @@
 								placeholder="Добавьте цену товара"
 								label="Цена"
 							/>
+
 							<CategorySelect {categories} bind:selectedCategory />
 							<Tags {tags} bind:selectedTags />
+							<Colors {colors} bind:selectedColors />
 						</div>
 					</div>
 					<div class={selectedTab === 'tab2' ? 'block' : 'hidden'}>

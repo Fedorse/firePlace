@@ -27,6 +27,27 @@ export const tags = pgTable('tags', {
 	name_en: text('name_en').notNull()
 });
 
+export const colors = pgTable('colors', {
+	id: serial('id').primaryKey(),
+	hex: text('hex').notNull(),
+	name: text('name').notNull()
+});
+
+export const productColors = pgTable(
+	'product_colors',
+	{
+		productId: integer('product_id')
+			.notNull()
+			.references(() => products.id, { onDelete: 'cascade' }),
+		colorId: integer('color_id')
+			.notNull()
+			.references(() => colors.id, { onDelete: 'cascade' })
+	},
+	(table) => ({
+		pk: primaryKey({ columns: [table.productId, table.colorId] })
+	})
+);
+
 export const productTags = pgTable(
 	'product_tags',
 	{
@@ -51,10 +72,22 @@ export const productRelations = relations(products, ({ one, many }) => ({
 		fields: [products.category_id],
 		references: [categories.id]
 	}),
-	productTags: many(productTags)
+	productTags: many(productTags),
+	productColors: many(productColors)
 }));
 
-export const productToGroupsRelations = relations(productTags, ({ one }) => ({
+export const productToColorRelations = relations(productColors, ({ one }) => ({
+	product: one(products, {
+		fields: [productColors.productId],
+		references: [products.id]
+	}),
+	color: one(colors, {
+		fields: [productColors.colorId],
+		references: [colors.id]
+	})
+}));
+
+export const productToTagsRelations = relations(productTags, ({ one }) => ({
 	product: one(products, {
 		fields: [productTags.productId],
 		references: [products.id]
