@@ -4,8 +4,8 @@
 	import { filterProducts } from '$lib/utils/filters';
 	import { fade } from 'svelte/transition';
 	import Filters from '$lib/components/Filters.svelte';
+	import Button from '$lib/components/Button.svelte';
 	export let data;
-	console.log(data);
 
 	let filtredProducts = data.products;
 
@@ -22,10 +22,7 @@
 			<p class="text-zinc-500 text-xl">Catalog gas firetables test test description</p>
 		</div>
 		<div class="self-center">
-			<button
-				class="outline border-orange-600 w-48 text-orange-600 border-1 rounded-3xl p-3 hover:bg-orange-400 hover:text-white transition-colors duration-300 ease-in-out"
-				>Download catalog</button
-			>
+			<Button text="Download catalog" variant="outline" type="button" />
 		</div>
 	</div>
 	<Filters {data} />

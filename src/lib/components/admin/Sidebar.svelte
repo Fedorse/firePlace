@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { derived } from 'svelte/store';
 	import { goto } from '$app/navigation';
+	import { BASE_URL } from '$lib/utils/environment';
 
 	const currentPath = derived(page, ($page) => $page.url.pathname);
 
@@ -134,5 +135,8 @@
 				</details>
 			</li>
 		</ul>
+		<a class="hidden lg:block link link-secondary text-xl" href="{BASE_URL}/catalog"
+			>Перейти в каталог</a
+		>
 	</aside>
 </div>

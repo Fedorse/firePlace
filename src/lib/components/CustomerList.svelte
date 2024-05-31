@@ -12,10 +12,13 @@
 	];
 </script>
 
-<div class="mt-20">
+<div class="pt-10">
 	<div class="px-20">
 		<h1 class="font-bold uppercase text-5xl text-black mb-2">Our Customers</h1>
-		<p class="text-zinc-500 text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+		<p class="text-zinc-500 text-lg">
+			Bringing comfort and elegance to homes. Discover the experiences of our happy fireplace
+			owners.
+		</p>
 	</div>
 	<div class="grid grid-cols-3 gap-4 place-items-center pt-12">
 		{#each customerImg as img}

@@ -1,7 +1,6 @@
 <script>
-	import AdminEditIcon from '$lib/components/icons/AdminEditIcon.svelte';
 	import AdminTitle from '$lib/components/admin/AdminTitle.svelte';
-	import CheckBox from '$lib/components/icons/CheckBox.svelte';
+	import Button from '$lib/components/admin/formInputs/Button.svelte';
 	import { enhance } from '$app/forms';
 	import { toasts } from '$lib/stores/toasts';
 	export let data;
@@ -16,7 +15,7 @@
 			<tr>
 				<th class="text-md font-semibold text-left pl-10 py-3">Цвет</th>
 				<th class="text-md font-semibold text-left pl-10 py-3">Название</th>
-				<th class="text-md font-semibold text-center pl-10 py-3">Удалить</th>
+				<th class="text-md font-semibold text-center pl-10 py-3"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -32,7 +31,7 @@
 							<span>{color.name}</span>
 						</div>
 					</td>
-					<td class="flex justify-center pt-4">
+					<td class="flex justify-center pt-4 items-center">
 						<form
 							use:enhance={() =>
 								async ({ update }) => {
@@ -44,20 +43,7 @@
 							bind:this={forms[color.id]}
 						>
 							<input type="hidden" value={color.id} name="id" />
-							<label class="flex items-center cursor-pointer">
-								<input
-									type="checkbox"
-									class="hidden peer"
-									on:change={() => {
-										forms[color.id].requestSubmit();
-									}}
-								/>
-								<div
-									class="w-5 h-5 border border-slate-500 rounded-lg shadow-md peer-checked:bg-slate-600 peer-checked:border-red-700 flex items-center justify-center"
-								>
-									<CheckBox />
-								</div>
-							</label>
+							<Button text="Удалить" variant="bg-red-700" variantHover="bg-red-800" />
 						</form>
 					</td>
 				</tr>
