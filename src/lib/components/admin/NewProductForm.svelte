@@ -62,7 +62,7 @@
 	>
 		<div class="w-full flex gap-4">
 			<Image src={imgSrc} uniqueId="image-newProduct" />
-			<Video src={videoSrc} uniqueId="video-newProduct" />
+			<!-- <Video src={videoSrc} uniqueId="video-newProduct" /> -->
 		</div>
 		<div class="py-4">
 			<div class="w-full" role="tablist">

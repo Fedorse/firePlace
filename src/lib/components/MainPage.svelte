@@ -18,7 +18,7 @@
 	});
 </script>
 
-<div class="relative h-screen overflow-hidden rounded-lg" style="transform: scale({$scale})">
+<div class="relative h-screen overflow-hidden rounded-b-lg" style="transform: scale({$scale})">
 	<img
 		src="/assets/main_page.jpg"
 		class="absolute inset-0 w-full h-full object-cover"

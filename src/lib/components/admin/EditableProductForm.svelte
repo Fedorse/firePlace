@@ -52,7 +52,7 @@
 		<input type="hidden" name="id" value={product.id} />
 		<div class="w-full flex">
 			<Image src={product.imgUrl} uniqueId="image" />
-			<Video src={product.videoFile} uniqueId="video" />
+			<!-- <Video src={product.videoFile} uniqueId="video" /> -->
 		</div>
 		<div class="py-4">
 			<div class="w-full" role="tablist">
